@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="memory_allocation">Memory Allocation</string>
+    <string name="deadlock_avoidance">Deadlock Avoidance</string>
+    <string name="deadlock_detection">Deadlock Detection</string>
+    <string name="process_synchronisation">Process Synchronisation</string>
+    <string name="process_scheduling">Process Scheduling</string>
+    <string name="os_algorithm_simulator">OS Algorithm Simulator!</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="disk_scheduling">Disk Scheduling</string>
+    <string name="create_resource">Create Resource</string>
+    <string name="create_process">Create Process</string>
+    <string name="preset">Preset</string>
+    <string name="random">Random</string>
+    <string name="custom">Custom</string>
+    <string name="process_2_name">Process 2 Name</string>
+    <string name="process_1_name">Process 1 Name</string>
+    <string name="resource_1_name">Resource 1 name</string>
+    <string name="resource_2_name">Resource 2 Name</string>
+    <string name="submit">Submit</string>
+</resources>

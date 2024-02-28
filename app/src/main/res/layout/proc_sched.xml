@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".proSchedActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/proSchedCustom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/custom"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/proSchedRandom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/random"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/proSchedPreset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/preset"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="600dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="206dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/create_process"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:insetLeft="15dp"
+                    android:insetRight="15dp"
+                    android:text="@string/create_process" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:background="#FFFBFE"
+                        android:hint="@string/process_1_name"
+                        android:textAlignment="center"
+                        android:textColorHint="#546E7A" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:background="#FFFBFE"
+                        android:hint="@string/process_2_name"
+                        android:textAlignment="center"
+                        android:textColorHint="#546E7A" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="206dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/create_res"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:insetLeft="15dp"
+                    android:insetRight="15dp"
+                    android:text="@string/create_resource" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:background="#FFFBFE"
+                        android:hint="@string/resource_1_name"
+                        android:textAlignment="center"
+                        android:textColorHint="#546E7A" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#FFFBFE"
+                        android:hint="@string/resource_2_name"
+                        android:textAlignment="center"
+                        android:textColorHint="#546E7A" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
