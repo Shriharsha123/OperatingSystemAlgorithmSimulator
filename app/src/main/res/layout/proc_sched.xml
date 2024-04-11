@@ -46,6 +46,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/procCreateCol"
                 android:layout_width="206dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -58,35 +59,10 @@
                     android:insetRight="15dp"
                     android:text="@string/create_process" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="200dp"
-                        android:layout_height="48dp"
-                        android:background="#FFFBFE"
-                        android:hint="@string/process_1_name"
-                        android:textAlignment="center"
-                        android:textColorHint="#546E7A" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="200dp"
-                        android:layout_height="48dp"
-                        android:background="#FFFBFE"
-                        android:hint="@string/process_2_name"
-                        android:textAlignment="center"
-                        android:textColorHint="#546E7A" />
-                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/resCreateCol"
                 android:layout_width="206dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -99,33 +75,6 @@
                     android:insetRight="15dp"
                     android:text="@string/create_resource" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="200dp"
-                        android:layout_height="48dp"
-                        android:background="#FFFBFE"
-                        android:hint="@string/resource_1_name"
-                        android:textAlignment="center"
-                        android:textColorHint="#546E7A" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="200dp"
-                        android:layout_height="48dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="#FFFBFE"
-                        android:hint="@string/resource_2_name"
-                        android:textAlignment="center"
-                        android:textColorHint="#546E7A" />
-                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
         </LinearLayout>

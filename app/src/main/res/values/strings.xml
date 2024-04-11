@@ -18,4 +18,8 @@
     <string name="resource_1_name">Resource 1 name</string>
     <string name="resource_2_name">Resource 2 Name</string>
     <string name="submit">Submit</string>
+    <string name="add_process">Add Process</string>
+    <string name="process_name">Process Name</string>
+    <string name="arrival_time">Arrival Time</string>
+    <string name="burst_time">Burst Time</string>
 </resources>
