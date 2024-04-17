@@ -27,6 +27,9 @@
         <activity
             android:name=".dead_detect">
         </activity>
+        <activity
+            android:name=".paging">
+        </activity>
     </application>
 
 </manifest>

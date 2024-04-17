@@ -63,14 +63,13 @@ class Process
 }
 
 public class dead_detect extends AppCompatActivity{
-    //boolean isFilled=true;
     Process head=null;
     int procNum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dead_detect);
-        //int procNum=0;
+
 
         Button createProcessBt =  findViewById(R.id.addProc);
         Button submitBt= findViewById(R.id.submitProcSched);
@@ -96,9 +95,6 @@ public class dead_detect extends AppCompatActivity{
                 }
             }
         });
-
-
-
         submitBt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -234,9 +230,8 @@ public class dead_detect extends AppCompatActivity{
         return result;
     }
 
-
-        private String getProcName(int num)
-        {
+    private String getProcName(int num)
+    {
             Process temp=head;
             int count=0;
             while(count<num)
@@ -271,7 +266,7 @@ public class dead_detect extends AppCompatActivity{
         return temp.getbt();
     }
 
-        private void takeSubmission(int n) {
+    private void takeSubmission(int n) {
             int[] at=new int[n];
             int[] bt=new int[n];
             String[] name=new String[n];
@@ -336,9 +331,4 @@ public class dead_detect extends AppCompatActivity{
             System.out.println("average turnaround time is " + atat);
             System.out.println("average waiting time is " + awt);
         }
-
-
-
-
-
 }

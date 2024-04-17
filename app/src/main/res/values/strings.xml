@@ -22,4 +22,8 @@
     <string name="process_name">Process Name</string>
     <string name="arrival_time">Arrival Time</string>
     <string name="burst_time">Burst Time</string>
+    <string name="paging">Paging</string>
+    <string name="enter_page_requests_separated_by_comma">Enter page requests(separated by comma)</string>
+    <string name="input_details">Input details:</string>
+    <string name="enter_queue_capacity">Enter queue capacity</string>
 </resources>
