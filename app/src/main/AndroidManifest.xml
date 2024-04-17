@@ -30,6 +30,12 @@
         <activity
             android:name=".paging">
         </activity>
+        <activity
+            android:name=".bankers">
+        </activity>
+        <activity
+            android:name=".diskschedule">
+        </activity>
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Intent i= new Intent(MainActivity.this,proSchedActivity.class);
+                Intent i= new Intent(MainActivity.this,bankers.class);
                 startActivity(i);
             }
         });
@@ -39,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(k);
             }
         });
+
+        Button gotoDisk= findViewById(R.id.diskSched);
+        gotoDisk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k= new Intent(MainActivity.this,diskschedule.class);
+                startActivity(k);
+            }
+        });
+
 
 
     }
