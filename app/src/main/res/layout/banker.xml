@@ -9,40 +9,48 @@
 
     <EditText
         android:id="@+id/npEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="25dp"
         android:hint="@string/enter_number_of_processes"
-        android:inputType="number"
-        android:layout_marginBottom="25dp"/>
+        android:importantForAutofill="no"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/nrEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/enter_number_of_resources"
-        android:inputType="number"
-        android:layout_marginBottom="16dp"/>
+        android:importantForAutofill="no"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/allocationEditText"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="@string/enter_allocation_matrix_e_g_1_2_2_1_n1_0_3_3"
-        android:layout_marginBottom="16dp"/>
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"/>
 
     <EditText
         android:id="@+id/maxEditText"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="@string/enter_max_matrix_e_g_3_3_2_2_n1_1_3_4"
-        android:layout_marginBottom="16dp"/>
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"/>
 
     <EditText
         android:id="@+id/availableEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/enter_available_matrix_e_g_3_1_1_2"
-        android:layout_marginBottom="16dp"/>
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"/>
 
     <Button
         android:id="@+id/calculateButton"

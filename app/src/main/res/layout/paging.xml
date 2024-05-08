@@ -1,44 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:padding="16dp"
+    tools:context=".paging">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/input_details"
-        android:textSize="25sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reqOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="@string/number_of_frames"
+        app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editReq"
-            android:layout_width="match_parent"
+            android:id="@+id/numFrames"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_page_requests_separated_by_comma" />
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/queueCapacity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_page_requests_separated_by_comma"
+        app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editCap"
-            android:layout_width="match_parent"
+            android:id="@+id/pageNum"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_queue_capacity" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/submitPages"
+        android:id="@+id/calculateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit" />
+        android:layout_gravity="center_horizontal"
+        android:text="@string/calculate" />
+
+
+    <LinearLayout
+        android:id="@+id/reqQueue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="top"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+    </LinearLayout>
+
+
 </LinearLayout>

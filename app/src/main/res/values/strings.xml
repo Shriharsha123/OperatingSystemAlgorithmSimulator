@@ -37,4 +37,12 @@
     <string name="enter_disk_requests_comma_separated1">Enter disk requests (comma-separated)</string>
     <string name="enter_initial_head_position1">Enter initial head position</string>
     <string name="schedule1">schedule</string>
+    <string name="error_input">Error: Please check your input.</string>
+    <string name="number_of_frames">Number of Frames</string>
+    <string name="initial_semaphorte_value">Enter initial semaphorte value</string>
+    <string name="number_of_threads">Enter number of threads</string>
+    <string name="first_fit">First Fit</string>
+    <string name="best_fit">Best Fit</string>
+    <string name="worst_fit">Worst Fit</string>
+    <string name="add_memory_block">Add Memory block</string>
 </resources>

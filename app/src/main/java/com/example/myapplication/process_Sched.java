@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -62,47 +61,35 @@ class Process
 
 }
 
-public class dead_detect extends AppCompatActivity{
+public class process_Sched extends AppCompatActivity{
     Process head=null;
     int procNum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dead_detect);
+        setContentView(R.layout.process_sched);
 
 
         Button createProcessBt =  findViewById(R.id.addProc);
         Button submitBt= findViewById(R.id.submitProcSched);
-        createProcessBt.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view)
+        createProcessBt.setOnClickListener(view -> {
+            Process tail=getTail();
+            if(tail==null)
             {
-                Process tail=getTail();
-                if(tail==null)
-                {
-                    procNum = procNum + 1;
-                    addProcessInput(procNum);
-                }
-                //int procNum=0;
-                else if(tail.checkFill()) {
-                    procNum = procNum + 1;
-                    addProcessInput(procNum);
-                }
-                else
-                {
-                    Toast.makeText(dead_detect.this, "You did not enter values", Toast.LENGTH_SHORT).show();
-                }
+                procNum = procNum + 1;
+                addProcessInput(procNum);
+            }
+            //int procNum=0;
+            else if(tail.checkFill()) {
+                procNum = procNum + 1;
+                addProcessInput(procNum);
+            }
+            else
+            {
+                Toast.makeText(process_Sched.this, "You did not enter values", Toast.LENGTH_SHORT).show();
             }
         });
-        submitBt.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view)
-            {
-                takeSubmission(procNum);
-            }
-        });
+        submitBt.setOnClickListener(view -> takeSubmission(procNum));
     }
     private void addProcessInput(int procNum)
     {

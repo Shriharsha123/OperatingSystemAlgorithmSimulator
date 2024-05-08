@@ -22,10 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".proSchedActivity">
-        </activity>
-        <activity
-            android:name=".dead_detect">
+            android:name=".process_Sched">
         </activity>
         <activity
             android:name=".paging">
@@ -35,6 +32,12 @@
         </activity>
         <activity
             android:name=".diskschedule">
+        </activity>
+        <activity
+            android:name=".process_Synch">
+        </activity>
+        <activity
+            android:name=".memoryAllocation">
         </activity>
     </application>
 

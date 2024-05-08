@@ -1,83 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".memoryAllocation">
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/selectAlgorithm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
+        <RadioButton
+            android:id="@+id/firstfitbtn"
+            android:layout_width="136dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add Job" />
+            android:text="@string/first_fit" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
+        <RadioButton
+            android:id="@+id/bestfitbtn"
+            android:layout_width="136dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add Memory Block" />
-    </LinearLayout>
+            android:text="@string/best_fit" />
+
+        <RadioButton
+            android:id="@+id/worstfitbtn"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/worst_fit" />
+    </RadioGroup>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="600dp"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/processCreateCol"
+            android:layout_width="205dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/create_process"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:insetLeft="15dp"
+                android:insetRight="15dp"
+                android:text="@string/add_process" />
 
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="#00BCD4"
-                    android:text="Job Name" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="#00BCD4"
-                    android:text="Memory Requested" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:id="@+id/blockCreateCol"
+            android:layout_width="205dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/create_block"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:textAlignment="gravity">
+                android:insetLeft="15dp"
+                android:insetRight="15dp"
+                android:text="@string/add_memory_block" />
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="#00BCD4"
-                    android:text="Memory Block Size"
-                    android:textAlignment="viewEnd" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -85,14 +77,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
+            android:id="@+id/submit"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/submit" />
     </LinearLayout>
-
 </LinearLayout>
