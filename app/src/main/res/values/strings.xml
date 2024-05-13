@@ -45,4 +45,5 @@
     <string name="best_fit">Best Fit</string>
     <string name="worst_fit">Worst Fit</string>
     <string name="add_memory_block">Add Memory block</string>
+    <string name="page_replacement">Page Replacement</string>
 </resources>
