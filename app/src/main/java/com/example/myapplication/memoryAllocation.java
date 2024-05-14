@@ -48,9 +48,11 @@ class ProcessA
 }
 class MemoryBlock{
     int block_size;
+    int assigned_proc;
     MemoryBlock next;
     public MemoryBlock() {
         this.block_size= -1;
+        this.assigned_proc=1000;
         this.next=null;
     }
     public int getBSize(){
@@ -62,6 +64,12 @@ class MemoryBlock{
     public boolean checkFill()
     {
         return this.block_size >= 0;
+    }
+    public void setAssigned_proc(int i){
+        this.assigned_proc=i;
+    }
+    public int getAssigned_proc(){
+        return this.assigned_proc;
     }
 }
 public class memoryAllocation extends AppCompatActivity{
@@ -97,8 +105,7 @@ public class memoryAllocation extends AppCompatActivity{
         });
         createResourceBt.setOnClickListener(view -> {
             MemoryBlock tail=getBlockTail();
-            if(tail==null)
-            {
+            if(tail==null) {
                 resNum = resNum + 1;
                 addResourceInput(resNum);
             }
@@ -107,12 +114,9 @@ public class memoryAllocation extends AppCompatActivity{
                 addResourceInput(resNum);
             }
             else
-            {
                 Toast.makeText(memoryAllocation.this, "You did not enter values", Toast.LENGTH_SHORT).show();
-            }
         });
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            // find which radio button is selected
             if(checkedId == R.id.firstfitbtn) {
                 algorithm = 1;
             } else if(checkedId == R.id.bestfitbtn) {
@@ -127,18 +131,26 @@ public class memoryAllocation extends AppCompatActivity{
             MemoryBlock mem=getBlockTail();
             if(proc.checkFill() && mem.checkFill() && algorithm!=0) {
                 int[] ans=takeSubmission(algorithm, procNum, resNum);
-                baseLayout = findViewById(R.id.mainLayout);
-                baseLayout.removeAllViews();
-                animateMemAlloc(ans);
+                boolean canAlloc=true;
+                for (int an : ans) {
+                    if (an == -1) {
+                        canAlloc = false;
+                        break;
+                    }
+                }
+                if(canAlloc) {
+                    baseLayout = findViewById(R.id.mainLayout);
+                    baseLayout.removeAllViews();
+                    animateMemAlloc();
+                }
+                else
+                    Toast.makeText(memoryAllocation.this,"Cannot allocate memory",Toast.LENGTH_LONG).show();
             }
             else
-            {
                 Toast.makeText(memoryAllocation.this, "You did not enter values", Toast.LENGTH_SHORT).show();
-            }
         });
     }
-    private void addProcessInput(int procNum)
-    {
+    private void addProcessInput(int procNum) {
         LinearLayout layout= findViewById(R.id.processCreateCol);
 
         TextInputLayout newInput= new TextInputLayout(this);
@@ -250,8 +262,7 @@ public class memoryAllocation extends AppCompatActivity{
         }
         return result;
     }
-    private String getProcName(int num)
-    {
+    private String getProcName(int num) {
         ProcessA temp=prohead;
         int count=0;
         while(count<num){
@@ -260,8 +271,7 @@ public class memoryAllocation extends AppCompatActivity{
         }
         return temp.getName();
     }
-    private int getProSize(int num)
-    {
+    private int getProSize(int num) {
         ProcessA temp=prohead;
         int count=0;
         while(count<num) {
@@ -270,8 +280,7 @@ public class memoryAllocation extends AppCompatActivity{
         }
         return temp.getPSize();
     }
-    private int getBlockSize(int num)
-    {
+    private int getBlockSize(int num) {
         MemoryBlock temp=memhead;
         int count=0;
         while(count<num) {
@@ -279,6 +288,24 @@ public class memoryAllocation extends AppCompatActivity{
             count+=1;
         }
         return temp.getBSize();
+    }
+    private void setBlockAssignedProc(int num,int proc){
+        MemoryBlock temp=memhead;
+        int count=0;
+        while(count<num) {
+            temp=temp.next;
+            count+=1;
+        }
+        temp.setAssigned_proc(proc);
+    }
+    private int getblockAssignedProc(int num){
+        MemoryBlock temp=memhead;
+        int count=0;
+        while(count<num) {
+            temp=temp.next;
+            count+=1;
+        }
+        return temp.getAssigned_proc();
     }
     private int[] takeSubmission(int algorithm,int n,int m){
         int[] allocation = new int[n];
@@ -296,6 +323,7 @@ public class memoryAllocation extends AppCompatActivity{
                 for (int j = 0; j < m; j++) {
                     if (blockSize[j] >= processSize[i]) {
                         allocation[i] = j;
+                        setBlockAssignedProc(j,i);
                         blockSize[j] -= processSize[i];
                         break;
                     }
@@ -315,6 +343,7 @@ public class memoryAllocation extends AppCompatActivity{
                 }
                 if (bestIdx != -1) {
                     allocation[i] = bestIdx;
+                    setBlockAssignedProc(bestIdx,i);
                     blockSize[bestIdx] -= processSize[i];
                 }
             }
@@ -332,6 +361,7 @@ public class memoryAllocation extends AppCompatActivity{
                 }
                 if (wstIdx != -1) {
                     allocation[i] = wstIdx;
+                    setBlockAssignedProc(wstIdx,i);
                     blockSize[wstIdx] -= processSize[i];
                 }
             }
@@ -342,101 +372,108 @@ public class memoryAllocation extends AppCompatActivity{
                     processSize[i] + "\t\t");
             if (allocation[i] != -1)
                 System.out.print(allocation[i] + 1);
-            else
+            else {
                 System.out.print("Not Allocated");
+                Arrays.fill(allocation, -1);
+            }
             System.out.println();
         }
         return allocation;
     }
-
-    private void animateMemAlloc(int[] ans)
-    {
-        baseLayout.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams halfScreen=new LinearLayout.LayoutParams((LinearLayout.LayoutParams.MATCH_PARENT)/2,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.VERTICAL);
-        LinearLayout procSide=new LinearLayout(memoryAllocation.this);
-        procSide.setLayoutParams(halfScreen);
-        procSide.setOrientation(LinearLayout.VERTICAL);
-        procSide.setGravity(Gravity.CENTER_HORIZONTAL);
-        baseLayout.addView(procSide);
-        LinearLayout memSide=new LinearLayout(memoryAllocation.this);
-        memSide.setLayoutParams(halfScreen);
-        memSide.setOrientation(LinearLayout.VERTICAL);
-        memSide.setGravity(Gravity.CENTER_HORIZONTAL);
-
-        baseLayout.addView(memSide);
+    private void animateMemAlloc() {
+        baseLayout.setOrientation(LinearLayout.VERTICAL);
+        for (int i = 0; i < resNum; i++) {
+            for (int j = i+1; j < resNum; j++) {
+                if(getblockAssignedProc(i)>getblockAssignedProc(j))
+                    exchangeBlock(i,j);
+            }
+        }
         int procSum=0,memSum=0;
-        int boxScale=500;
+        int boxScale=300;
         for (int i = 0; i < procNum; i++) {
             procSum+=getProSize(i);
         }
-        for (int i = 0; i < resNum; i++) {
+        for (int i = 0; i < procNum; i++) {
             memSum+=getBlockSize(i);
         }
-        int divider= Math.max(procSum, memSum);
-        int gap=20;
+        int divider= Math.max(procSum,memSum);
         TextView[] procBoxes= new TextView[procNum];
-        //TextView[] proc2Boxes= new TextView[procNum];
-        LinearLayout.LayoutParams paddingParams=new LinearLayout.LayoutParams(80,gap);
+        TextView[] memBoxes=new TextView[procNum];
         for (int i = 0; i < procNum; i++) {
             TextView newText= new TextView(memoryAllocation.this);
-            float proportion=(float)getProSize(i)/divider*boxScale;
+            TextView newMem= new TextView(memoryAllocation.this);
+            float proportion=Math.max((float)getProSize(i)/divider*boxScale,(float)getBlockSize(i)/divider*boxScale);
+            LinearLayout.LayoutParams sliceScreen=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,(int)proportion);
+            LinearLayout slice=new LinearLayout(memoryAllocation.this);
+            slice.setLayoutParams(sliceScreen);
+            slice.setOrientation(LinearLayout.HORIZONTAL);
+            slice.setGravity(Gravity.START);
+            slice.setPadding(0,20,0,0);
+            baseLayout.addView(slice);
+            proportion=(float)getProSize(i)/divider*boxScale;
             LinearLayout.LayoutParams procTextParams=new LinearLayout.LayoutParams(80,(int)proportion);
             newText.setLayoutParams(procTextParams);
             newText.setBackgroundColor(Color.GREEN);
             newText.setText(getProcName(i));
             newText.setGravity(Gravity.CENTER);
             newText.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
-            procSide.addView(newText);
-            TextView paddingBox=new TextView(this);
-            paddingBox.setLayoutParams(paddingParams);
-            paddingBox.setBackgroundColor(Color.BLACK);
-            procSide.addView(paddingBox);
+            proportion=(float)getBlockSize(i)/divider*boxScale;
+            LinearLayout.LayoutParams memTextParams=new LinearLayout.LayoutParams(90,(int)proportion);
+            newMem.setLayoutParams(memTextParams);
+            newMem.setBackgroundColor(Color.BLUE);
+            String blockName="Size:" + getBlockSize(i);
+            newMem.setText(blockName);
+            newMem.setTextColor(Color.BLACK);
+            newMem.setGravity(Gravity.CENTER);
+            newMem.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+            newMem.setPadding(400,0,0,0);
+            slice.addView(newText);
+            slice.addView(newMem);
             procBoxes[i]=newText;
-            //TextView newText2=new TextView(memoryAllocation.this);
-            //newText2.setLayoutParams(procTextParams);
-            //newText2.setBackgroundColor(Color.GREEN);
-            //newText2.setText(getProcName(i));
-            //newText2.setGravity(Gravity.CENTER);
-            //newText2.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
-            //proc2Boxes[i]=newText2;
+            memBoxes[i]=newMem;
         }
-        TextView[] memBoxes= new TextView[resNum];
-        for (int i = 0; i < resNum; i++) {
-            TextView newText= new TextView(memoryAllocation.this);
-            float proportion=(float)getBlockSize(i)/divider*boxScale;
-            LinearLayout.LayoutParams memTextParams=new LinearLayout.LayoutParams(85,(int)proportion);
-            newText.setLayoutParams(memTextParams);
-            newText.setBackgroundColor(Color.DKGRAY);
-            newText.setText(String.valueOf(getBlockSize(i)));
-            newText.setGravity(Gravity.CENTER);
-            newText.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
-            memSide.addView(newText);
-            TextView paddingBox=new TextView(this);
-            paddingBox.setLayoutParams(paddingParams);
-            paddingBox.setBackgroundColor(Color.BLACK);
-            memSide.addView(paddingBox);
-            memBoxes[i]=newText;
-        }
-        //Actual animation starts
-        int cumulativeProcSum=0;
         long delayStart=400L;
         long delayTimeSlice=1300L;
         for (int i = 0; i < procNum; i++) {
-            ObjectAnimator fitHoriz=ObjectAnimator.ofFloat(procBoxes[i],"translationX",410);
-            ObjectAnimator fitVert=ObjectAnimator.ofFloat(procBoxes[i],"translationY",((float)getmemPostion(ans[i])/memSum*boxScale)-cumulativeProcSum+gap*(ans[i]-i));
+            ObjectAnimator fitHoriz=ObjectAnimator.ofFloat(procBoxes[i],"translationX",80);
             fitHoriz.setDuration(delayTimeSlice);
             Handler h=new Handler();
-            h.postDelayed(fitVert::start, delayStart + i * delayTimeSlice/2);
-            h.postDelayed(fitHoriz::start, delayStart + i * delayTimeSlice);
-
-            cumulativeProcSum+= procBoxes[i].getLayoutParams().height;
+            int finalI = i;
+            h.postDelayed(()->{
+                fitHoriz.start();
+                memBoxes[finalI].setAlpha(0.5f);
+            }, delayStart + i * delayTimeSlice);
         }
     }
-    private int getmemPostion(int idx)
-    {
-        int i,sum=0;
-        for(i=0;i<idx;i++)
-            sum+=getBlockSize(i);
-        return sum;
+    private void exchangeBlock(int b1,int b2) {
+        if(b1==b2)
+            return;
+        MemoryBlock block1=memhead;
+        MemoryBlock block2=memhead;
+        MemoryBlock prev1=null;
+        MemoryBlock prev2=null;
+        int count=0;
+        while(count<b1) {
+            prev1=block1;
+            block1=block1.next;
+            count+=1;
+        }
+        count=0;
+        while(count<b2) {
+            prev2=block2;
+            block2=block2.next;
+            count+=1;
+        }
+        if (prev1 != null)
+            prev1.next = block2;
+        else
+            memhead = block2;
+        if (prev2 != null)
+            prev2.next = block1;
+        else
+            memhead = block1;
+        MemoryBlock temp = block1.next;
+        block1.next = block2.next;
+        block2.next = temp;
     }
 }

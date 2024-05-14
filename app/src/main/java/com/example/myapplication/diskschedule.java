@@ -40,31 +40,28 @@ public class diskschedule extends AppCompatActivity {
 
         setupChart();
 
-        scheduleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String input = inputEditText.getText().toString();
-                String[] inputArray = input.split(",");
-                // Convert input string array to integer array
-                int[] requests = new int[inputArray.length];
-                for (int i = 0; i < inputArray.length; i++) {
-                    requests[i] = Integer.parseInt(inputArray[i].trim());
-                }
-                String initialHeadInput = initialHeadText.getText().toString();
-                int initialHeadPosition;
-                try {
-                    initialHeadPosition = Integer.parseInt(initialHeadInput);
-                } catch (NumberFormatException e) {
-
-                    Toast.makeText(diskschedule.this, "Invalid initial head position", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                int totalHeadMovement = calculateTotalHeadMovement(requests, initialHeadPosition);
-                String resultstr="Total head movement using FCFS: " + totalHeadMovement;
-                result.setText(resultstr);
-                animateDiskHead(requests);
-                updateLineChart(requests);
+        scheduleButton.setOnClickListener(v -> {
+            String input = inputEditText.getText().toString();
+            String[] inputArray = input.split(",");
+            // Convert input string array to integer array
+            int[] requests = new int[inputArray.length];
+            for (int i = 0; i < inputArray.length; i++) {
+                requests[i] = Integer.parseInt(inputArray[i].trim());
             }
+            String initialHeadInput = initialHeadText.getText().toString();
+            int initialHeadPosition;
+            try {
+                initialHeadPosition = Integer.parseInt(initialHeadInput);
+            } catch (NumberFormatException e) {
+
+                Toast.makeText(diskschedule.this, "Invalid initial head position", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int totalHeadMovement = calculateTotalHeadMovement(requests, initialHeadPosition);
+            String resultstr="Total head movement using FCFS: " + totalHeadMovement;
+            result.setText(resultstr);
+            animateDiskHead(requests);
+            updateLineChart(requests);
         });
     }
     
@@ -113,12 +110,7 @@ public class diskschedule extends AppCompatActivity {
         final Handler handler = new Handler();
         for (int i = 0; i < requests.length; i++) {
             final int request = requests[i];
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    animateDiskHeadToPosition(request);
-                }
-            }, i * 1000L); 
+            handler.postDelayed(() -> animateDiskHeadToPosition(request), i * 1000L);
         }
     }
     // Update line chart with disk requests
